@@ -12,6 +12,22 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
     
+    // 1. new UILongPressGestureRecognizer 元件
+    // 2. connect UILongPressGestureRecognizer Action
+    // 3. sender.location(in: map) 取得點擊位置
+    
+    @IBAction func addMeAnnotation(_ sender: UILongPressGestureRecognizer) {
+        let touchPoint = sender.location(in: map)
+        let touchCoordinate:CLLocationCoordinate2D = map.convert(touchPoint, toCoordinateFrom: map) // 轉換座標
+        
+        let annotation = MKPointAnnotation() // 大頭針
+        annotation.coordinate = touchCoordinate
+        annotation.title = "New Place"
+        annotation.subtitle = "One day I wanna be here"
+        
+        map.addAnnotation(annotation)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,11 +52,11 @@ class ViewController: UIViewController {
         // map.mapType = .satellite
         
         // 大頭針marker
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location // 座標
-        annotation.title = "Eiffel Tower" // 標題
-        annotation.subtitle = "I was here once" // 副標題
-        map.addAnnotation(annotation)
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = location // 座標
+//        annotation.title = "Eiffel Tower" // 標題
+//        annotation.subtitle = "I was here once" // 副標題
+//        map.addAnnotation(annotation)
         
     }
 
