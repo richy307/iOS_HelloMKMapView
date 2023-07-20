@@ -28,10 +28,20 @@ class ViewController: UIViewController {
         // 整體放大比例
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
         
-        
         // 顯示區域
         let region:MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
         map.setRegion(region, animated: true)
+        
+        // 地圖顯示模式 // 衛星模式
+        // map.mapType = .satellite
+        
+        // 大頭針marker
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location // 座標
+        annotation.title = "Eiffel Tower" // 標題
+        annotation.subtitle = "I was here once" // 副標題
+        map.addAnnotation(annotation)
+        
     }
 
 
